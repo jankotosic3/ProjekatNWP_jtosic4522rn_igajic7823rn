@@ -1,0 +1,30 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a [routerLink]="'/'" class="navbar-brand">Raf cloud</a>
+      <div
+        class="collapse navbar-collapse justify-content-between"
+        id="navbarNavAltMarkup"
+      >
+        <div class="navbar-nav">
+          <!-- OVDE IDU RUTE ZA STRANICE -->
+        </div>
+        <div class="d-flex">
+          <div class="navbar-nav">
+            <a
+              [routerLink]="'/user-login'"
+              class="nav-link active"
+              aria-current="page"
+            >
+              Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container pt-3">
+  <router-outlet></router-outlet>
+</div>
