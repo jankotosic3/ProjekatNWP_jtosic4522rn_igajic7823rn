@@ -16,7 +16,12 @@
               class="nav-link active"
               aria-current="page"
             >
-              Login
+              @if(userLoggedIn){
+                <p>{{userLoggedIn.name}}</p>
+              }
+              @else {
+                <p>Login</p>
+              }
             </a>
           </div>
         </div>

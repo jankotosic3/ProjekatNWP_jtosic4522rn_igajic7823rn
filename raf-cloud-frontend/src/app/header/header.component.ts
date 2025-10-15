@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { User } from '../user-login/user.model';
 
 @Component({
   selector: 'app-header',
@@ -9,10 +11,12 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  @Input({ required: true }) userLoggedIn!: boolean;
+
+  constructor(private authService: AuthService) {}
+
   username: string = 'Korisnik';
 
-  onUserLoginChange() {
-    this.userLoggedIn = true;
+  get userLoggedIn(): User {
+    return this.authService.userLoggedIn!;
   }
 }
