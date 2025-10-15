@@ -5,7 +5,7 @@ import { DUMMY_USERS } from "./dummy-users";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService {    
     users = DUMMY_USERS;
 
     userLoggedIn: User | null = null;
@@ -23,5 +23,4 @@ export class AuthService {
     userLogout() {
         this.userLoggedIn = null;
     }
-
 }
