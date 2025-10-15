@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { User } from "./user-login/user.model";
+import { type User } from "./user-login/user.model";
 import { DUMMY_USERS } from "./dummy-users";
 
 @Injectable({
