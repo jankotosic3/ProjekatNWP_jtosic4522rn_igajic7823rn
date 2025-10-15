@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "raf-cloud-frontend:build:production"
+              "buildTarget": "raf-cloud-frontend:build:production"
             },
             "development": {
-              "browserTarget": "raf-cloud-frontend:build:development"
+              "buildTarget": "raf-cloud-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "raf-cloud-frontend:build"
+            "buildTarget": "raf-cloud-frontend:build"
           }
         },
         "test": {
