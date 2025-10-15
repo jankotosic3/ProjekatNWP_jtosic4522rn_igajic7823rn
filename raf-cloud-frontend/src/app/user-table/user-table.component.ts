@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-table',
@@ -9,9 +10,13 @@ import { AuthService } from '../auth.service';
   styleUrl: './user-table.component.css'
 })
 export class UserTableComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
+  onNewUser(){
+    this.router.navigate(['/new-user']);
+  }
   get users(){
     return this.authService.users;
   }
+
 }

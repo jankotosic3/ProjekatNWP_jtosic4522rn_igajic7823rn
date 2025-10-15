@@ -23,4 +23,15 @@ export class AuthService {
     userLogout() {
         this.userLoggedIn = null;
     }
+
+    // addNewUser(name: string, surname: string, email: string, password: string) {
+    //     this.users.push({
+    //         id: (this.users.length + 1).toString(),
+    //         name: name,
+    //         surname: surname,
+    //         email: email,
+    //         password: password,
+    //         permissions: []
+    //     });
+    // }
 }
