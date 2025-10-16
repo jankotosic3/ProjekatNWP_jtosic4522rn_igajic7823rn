@@ -14,11 +14,14 @@
         <th scope="col">Can delete a user</th>
         <th scope="col">Can update a user</th>
         <th scope="col">Can read user data</th>
+        @if(userLoggedIn?.deleteUserPermission) {
+        <th scope="col">Delete user</th>
+        }
       </tr>
     </thead>
     <tbody>
       @for (user of users; track user.id) {
-      <tr>
+      <tr (click)="onRowClick(user)">
         <th scope="row">{{ user.id }}</th>
         <td>{{ user.name }}</td>
         <td>{{ user.surname }}</td>
@@ -27,6 +30,10 @@
         <td>{{ user.deleteUserPermission }}</td>
         <td>{{ user.updateUserPermission }}</td>
         <td>{{ user.readUserPermission }}</td>
+        @if(userLoggedIn?.deleteUserPermission) {
+          <button type="button" class="btn btn-danger fw-semibold px-4" (click)="openDeleteUserDialog(user); $event.stopPropagation()">Delete</button>
+          <!-- $event.stopPropagation() sprecava da se pozove onRowClick(), tj da se odradi funkcija parent komponente -->
+        }
       </tr>
       }
     </tbody>
@@ -41,5 +48,14 @@
       + Add new user
     </button>
   </div>
+  } 
+    
+  @if(selectedUser && userLoggedIn?.updateUserPermission) {
+  <app-edit-user-data [selectedUser]="selectedUser" (closeDialog)="closeUpdateUserDialog()"/>
   }
+
+  @if(showDeleteUserDialog && userToDelete && userLoggedIn?.deleteUserPermission) {
+    <app-delete-user [user]="userToDelete" (closeDialog)="closeDeleteUserDialog()"/>
+  }
+
 </div>

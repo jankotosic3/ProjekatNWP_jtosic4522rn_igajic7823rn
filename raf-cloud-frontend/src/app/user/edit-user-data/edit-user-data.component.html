@@ -1,0 +1,132 @@
+<div
+  class="overlay"
+  (click)="close()"
+></div>
+
+<div
+  class="modal d-block"
+  tabindex="-1"
+  role="dialog"
+  style="top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 1050; max-width: 500px; width: 90%;"
+>
+  <div class="modal-content bg-dark text-light rounded-4 shadow-lg p-4">
+    <div class="modal-header border-bottom border-secondary">
+      <h5 class="modal-title">
+        Edit user: {{ selectedUser.name + " " + selectedUser.surname }}
+      </h5>
+      <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="close()"></button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="mt-3">
+      <div class="mb-3">
+        <label for="exampleInputName" class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control bg-secondary text-light border-0"
+          id="exampleInputName"
+          placeholder="Enter your name"
+          [(ngModel)]="name"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputSurname" class="form-label">Surname</label>
+        <input
+          type="text"
+          class="form-control bg-secondary text-light border-0"
+          id="exampleInputSurname"
+          placeholder="Enter your surname"
+          [(ngModel)]="surname"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputEmail" class="form-label">Email address</label>
+        <input
+          type="email"
+          class="form-control bg-secondary text-light border-0"
+          id="exampleInputEmail"
+          placeholder="Enter your email"
+          [(ngModel)]="email"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="exampleInputPassword" class="form-label">Password</label>
+        <input
+          type="password"
+          class="form-control bg-secondary text-light border-0"
+          id="exampleInputPassword"
+          placeholder="Password"
+          [(ngModel)]="password"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+
+      <!-- Permission checkboxes -->
+      <div class="form-check mb-2">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="permNewUser"
+          [(ngModel)]="newUserPermission"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <label class="form-check-label" for="permNewUser">
+          Permission to create new User
+        </label>
+      </div>
+
+      <div class="form-check mb-2">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="permReadUser"
+          [(ngModel)]="readUserPermission"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <label class="form-check-label" for="permReadUser">
+          Permission to see User data
+        </label>
+      </div>
+
+      <div class="form-check mb-2">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="permUpdateUser"
+          [(ngModel)]="updateUserPermission"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <label class="form-check-label" for="permUpdateUser">
+          Permission to update User data
+        </label>
+      </div>
+
+      <div class="form-check mb-4">
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="permDeleteUser"
+          [(ngModel)]="deleteUserPermission"
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <label class="form-check-label" for="permDeleteUser">
+          Permission to delete Users
+        </label>
+      </div>
+
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-info fw-semibold">
+          Submit changes
+        </button>
+        <button type="button" class="btn btn-secondary fw-semibold" (click)="close()">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

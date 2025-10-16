@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { type User } from "./user-login/user.model";
+import { type User } from "./user/user.model";
 import { DUMMY_USERS } from "./dummy-users";
 import { Router } from "@angular/router";
 
@@ -39,5 +39,24 @@ export class AuthService {
             deleteUserPermission: deleteUserPermission,
         });
         this.router.navigate(['/user-table']);
+    }
+
+    deleteUser(id: string) {
+        this.users = this.users.filter(user => user.id !== id);
+    }
+
+    updateUser(id:string, name: string, surname: string, email: string, password: string, newUserPermission: boolean, readUserPermission: boolean, updateUserPermission: boolean, deleteUserPermission: boolean) {
+        for(let user of this.users) {
+            if(user.id === id) {
+                user.name = name;
+                user.surname = surname;
+                user.email = email;
+                user.password = password;
+                user.newUserPermission = newUserPermission;
+                user.readUserPermission = readUserPermission;
+                user.updateUserPermission = updateUserPermission;
+                user.deleteUserPermission = deleteUserPermission;
+            }
+        }
     }
 }

@@ -10,32 +10,26 @@
         class="collapse navbar-collapse justify-content-between"
         id="navbarNavAltMarkup"
       >
-        @if(userLoggedIn?.readUserPermission) {
         <div class="navbar-nav">
           <a
             [routerLink]="'/user-table'"
-            class="nav-link text-light"
+            class="nav-link fw-bold text-light"
             aria-current="page"
           >
             Table
           </a>
         </div>
-        }
-        <!-- OVAJ ELSE SLUZI DA BI LOGIN DUGME BILO SKROZ DESNO DOK USER NIJE ULOGOVAN, JAKO GLUPO ISK ALI TAKO RADI CSS -->
-        @else{
-          <div></div>
-        }
         <div class="d-flex">
           <div class="navbar-nav">
             <a
               [routerLink]="'/user-login'"
-              class="nav-link text-light"
+              class="nav-link fw-semibold text-light"
               aria-current="page"
             >
               @if(userLoggedIn) {
-              <span class="fw-semibold">{{ userLoggedIn.name }}</span>
+              <span>{{ userLoggedIn.name }}</span>
               } @else {
-              <span class="fw-semibold">Login</span>
+              <span>Login</span>
               }
             </a>
           </div>

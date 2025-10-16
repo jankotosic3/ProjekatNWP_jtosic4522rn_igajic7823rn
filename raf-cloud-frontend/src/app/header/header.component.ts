@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { type User } from '../user-login/user.model';
+import { type User } from '../user/user.model';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +13,11 @@ import { type User } from '../user-login/user.model';
 export class HeaderComponent {
   constructor(private authService: AuthService) {}
 
-  get userLoggedIn(): User {
+  get userLoggedIn(): User | null {
     return this.authService.userLoggedIn!;
+  }
+
+  logout() {
+    this.authService.userLogout();
   }
 }
