@@ -1,3 +1,5 @@
+import { Machine } from "../machine/machine.model";
+
 export interface User {
   id: string
   name: string;
@@ -9,4 +11,13 @@ export interface User {
   readUserPermission: boolean;
   updateUserPermission: boolean;
   deleteUserPermission: boolean;
+
+  createdMachines: Machine[];
+
+  searchMachinePermission: boolean;
+  turnOnMachinePermission: boolean;
+  turnOffMachinePermission: boolean;
+  restartMachinePermission: boolean;
+  createMachinePermission: boolean;
+  deleteMachinePermission: boolean;
 }

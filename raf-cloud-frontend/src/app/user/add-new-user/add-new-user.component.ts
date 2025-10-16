@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../auth.service';
+import { type Machine } from 'src/app/machine/machine.model';
 
 @Component({
   selector: 'app-add-new-user',
@@ -20,6 +21,13 @@ export class AddNewUserComponent {
   readUserPermission: boolean = false;
   updateUserPermission: boolean = false;
   deleteUserPermission: boolean = false;
+  createdMachines: Machine[] = [];
+  searchMachinePermission: boolean = false;
+  turnOnMachinePermission: boolean = false;
+  turnOffMachinePermission: boolean = false;
+  restartMachinePermission: boolean = false;
+  createMachinePermission: boolean = false;
+  deleteMachinePermission: boolean = false;
 
   onSubmit() {
     this.authService.addNewUser(
@@ -30,7 +38,14 @@ export class AddNewUserComponent {
       this.newUserPermission,
       this.readUserPermission,
       this.updateUserPermission,
-      this.deleteUserPermission
+      this.deleteUserPermission,
+      this.createdMachines,
+      this.searchMachinePermission,
+      this.turnOnMachinePermission,
+      this.turnOffMachinePermission,
+      this.restartMachinePermission,
+      this.createMachinePermission,
+      this.deleteMachinePermission
     );
   }
 }

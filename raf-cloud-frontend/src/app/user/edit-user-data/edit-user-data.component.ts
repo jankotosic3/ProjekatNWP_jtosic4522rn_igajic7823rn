@@ -1,7 +1,8 @@
 import { Component, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../auth.service';
-import { User } from '../user.model';
+import { type User } from '../user.model';
+import { type Machine } from 'src/app/machine/machine.model';
 
 @Component({
   selector: 'app-edit-user-data',
@@ -23,6 +24,14 @@ export class EditUserDataComponent {
   updateUserPermission!: boolean;
   deleteUserPermission!: boolean;
 
+  createdMachines: Machine[] = [];
+  searchMachinePermission: boolean = false;
+  turnOnMachinePermission: boolean = false;
+  turnOffMachinePermission: boolean = false;
+  restartMachinePermission: boolean = false;
+  createMachinePermission: boolean = false;
+  deleteMachinePermission: boolean = false;
+  
   constructor(private authService: AuthService) {}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -31,10 +40,19 @@ export class EditUserDataComponent {
       this.email = this.selectedUser.email;
       this.password = this.selectedUser.password;
       this.surname = this.selectedUser.surname;
+
       this.newUserPermission = this.selectedUser.newUserPermission;
       this.readUserPermission = this.selectedUser.readUserPermission;
       this.updateUserPermission = this.selectedUser.updateUserPermission;
       this.deleteUserPermission = this.selectedUser.deleteUserPermission;
+
+      this.createdMachines = this.selectedUser.createdMachines;
+      this.searchMachinePermission = this.selectedUser.searchMachinePermission;
+      this.turnOnMachinePermission = this.selectedUser.turnOnMachinePermission;
+      this.turnOffMachinePermission = this.selectedUser.turnOffMachinePermission;
+      this.restartMachinePermission = this.selectedUser.restartMachinePermission;
+      this.createMachinePermission = this.selectedUser.createMachinePermission;
+      this.deleteMachinePermission = this.selectedUser.deleteMachinePermission;
     }
   }
 
@@ -48,7 +66,14 @@ export class EditUserDataComponent {
       this.newUserPermission,
       this.readUserPermission,
       this.updateUserPermission,
-      this.deleteUserPermission
+      this.deleteUserPermission,
+      this.createdMachines,
+      this.searchMachinePermission,
+      this.turnOnMachinePermission,
+      this.turnOffMachinePermission,
+      this.restartMachinePermission,
+      this.createMachinePermission,
+      this.deleteMachinePermission
     );
     this.close();
   }
