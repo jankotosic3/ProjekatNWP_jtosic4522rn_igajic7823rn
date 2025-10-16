@@ -10,7 +10,10 @@
         <th scope="col">Name</th>
         <th scope="col">Surname</th>
         <th scope="col">Email</th>
-        <th scope="col">Permissions</th>
+        <th scope="col">Can make new user</th>
+        <th scope="col">Can delete a user</th>
+        <th scope="col">Can update a user</th>
+        <th scope="col">Can read user data</th>
       </tr>
     </thead>
     <tbody>
@@ -20,12 +23,15 @@
         <td>{{ user.name }}</td>
         <td>{{ user.surname }}</td>
         <td>{{ user.email }}</td>
-        <td>{{ user.permissions }}</td>
+        <td>{{ user.newUserPermission }}</td>
+        <td>{{ user.deleteUserPermission }}</td>
+        <td>{{ user.updateUserPermission }}</td>
+        <td>{{ user.readUserPermission }}</td>
       </tr>
       }
     </tbody>
   </table>
-
+  @if(userLoggedIn?.newUserPermission) {
   <div class="text-end">
     <button
       type="button"
@@ -35,4 +41,5 @@
       + Add new user
     </button>
   </div>
+  }
 </div>

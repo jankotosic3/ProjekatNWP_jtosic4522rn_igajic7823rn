@@ -4,5 +4,9 @@ export interface User {
   surname: string;
   email: string;
   password: string;
-  permissions: string[];
+
+  newUserPermission: boolean;
+  readUserPermission: boolean;
+  updateUserPermission: boolean;
+  deleteUserPermission: boolean;
 }

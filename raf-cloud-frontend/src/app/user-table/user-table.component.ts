@@ -19,4 +19,8 @@ export class UserTableComponent {
     return this.authService.users;
   }
 
+  get userLoggedIn(){
+    return this.authService.userLoggedIn;
+  }
+
 }

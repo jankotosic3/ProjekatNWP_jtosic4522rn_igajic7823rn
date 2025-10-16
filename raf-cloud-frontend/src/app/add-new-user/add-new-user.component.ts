@@ -7,18 +7,30 @@ import { AuthService } from '../auth.service';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './add-new-user.component.html',
-  styleUrl: './add-new-user.component.css'
+  styleUrl: './add-new-user.component.css',
 })
 export class AddNewUserComponent {
-
   constructor(private authService: AuthService) {}
 
   name: string = '';
   email: string = '';
   password: string = '';
   surname: string = '';
-  
-   onSubmit(){
-      this.authService.addNewUser(this.name, this.surname, this.email, this.password)
-   }
+  newUserPermission: boolean = false;
+  readUserPermission: boolean = false;
+  updateUserPermission: boolean = false;
+  deleteUserPermission: boolean = false;
+
+  onSubmit() {
+    this.authService.addNewUser(
+      this.name,
+      this.surname,
+      this.email,
+      this.password,
+      this.newUserPermission,
+      this.readUserPermission,
+      this.updateUserPermission,
+      this.deleteUserPermission
+    );
+  }
 }

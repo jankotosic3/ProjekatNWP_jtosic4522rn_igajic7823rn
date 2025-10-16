@@ -26,14 +26,17 @@ export class AuthService {
         this.userLoggedIn = null;
     }
 
-    addNewUser(name: string, surname: string, email: string, password: string) {
+    addNewUser(name: string, surname: string, email: string, password: string, newUserPermission: boolean, readUserPermission: boolean, updateUserPermission: boolean, deleteUserPermission: boolean) {
         this.users.push({
             id: (this.users.length).toString(),
             name: name,
             surname: surname,
             email: email,
             password: password,
-            permissions: []
+            newUserPermission: newUserPermission,
+            readUserPermission:readUserPermission,
+            updateUserPermission: updateUserPermission,
+            deleteUserPermission: deleteUserPermission,
         });
         this.router.navigate(['/user-table']);
     }
