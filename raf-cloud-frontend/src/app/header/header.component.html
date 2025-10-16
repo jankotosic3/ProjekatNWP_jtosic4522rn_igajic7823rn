@@ -1,7 +1,11 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <div class="container-fluid">
-      <a [routerLink]="'/'" class="navbar-brand">Raf cloud</a>
+      <a
+        [routerLink]="'/'"
+        class="navbar-brand fw-bold text-uppercase text-light"
+        >Raf cloud</a
+      >
       <div
         class="collapse navbar-collapse justify-content-between"
         id="navbarNavAltMarkup"
@@ -9,7 +13,7 @@
         <div class="navbar-nav">
           <a
             [routerLink]="'/user-table'"
-            class="nav-link "
+            class="nav-link text-light"
             aria-current="page"
           >
             Table
@@ -19,13 +23,13 @@
           <div class="navbar-nav">
             <a
               [routerLink]="'/user-login'"
-              class="nav-link"
+              class="nav-link text-light"
               aria-current="page"
             >
-              @if(userLoggedIn){
-              <p>{{ userLoggedIn.name }}</p>
+              @if(userLoggedIn) {
+              <span class="fw-semibold">{{ userLoggedIn.name }}</span>
               } @else {
-              <p>Login</p>
+              <span>Login</span>
               }
             </a>
           </div>

@@ -19,6 +19,6 @@ export class AddNewUserComponent {
   surname: string = '';
   
    onSubmit(){
-  //    this.authService.addNewUser(this.name, this.surname, this.email, this.password)
+      this.authService.addNewUser(this.name, this.surname, this.email, this.password)
    }
 }

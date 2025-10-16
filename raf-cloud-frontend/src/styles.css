@@ -1,2 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+*
+body {
+  font-family: sans-serif;
+  background: radial-gradient(#21503f, #1d2220);
+  min-height: 100vh;
+}

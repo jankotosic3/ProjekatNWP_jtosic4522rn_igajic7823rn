@@ -1,51 +1,59 @@
-<form>
-  <div class="form-group">
-    <label for="exampleInputName">Name</label>
-    <input
-      type="name"
-      class="form-control"
-      id="exampleInputName"
-      aria-describedby="nameHelp"
-      placeholder="Enter your name"
-      [(ngModel)]="name"
-    />
-  </div>
+<div class="container bg-dark text-light p-5 rounded-4 shadow-lg mt-5" style="max-width: 500px;">
+  <h3 class="mb-4 text-center">Add New User</h3>
 
-  <div class="form-group">
-    <label for="exampleInputName">Surname</label>
-    <input
-      type="Surname"
-      class="form-control"
-      id="exampleInputSurname"
-      aria-describedby="surnameHelp"
-      placeholder="Enter your surname"
-      [(ngModel)]="surname"
-    />
-  </div>
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="exampleInputName" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control bg-secondary text-light border-0"
+        id="exampleInputName"
+        placeholder="Enter your name"
+        [(ngModel)]="name"
+        [ngModelOptions]="{standalone: true}"
+      />
+    </div>
 
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input
-      type="email"
-      class="form-control"
-      id="exampleInputEmail1"
-      aria-describedby="emailHelp"
-      placeholder="Enter email"
-      [(ngModel)]="email"
-    />
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input
-      type="password"
-      class="form-control"
-      id="exampleInputPassword1"
-      placeholder="Password"
-      [(ngModel)]="password"
-    />
-  </div>
+    <div class="mb-3">
+      <label for="exampleInputSurname" class="form-label">Surname</label>
+      <input
+        type="text"
+        class="form-control bg-secondary text-light border-0"
+        id="exampleInputSurname"
+        placeholder="Enter your surname"
+        [(ngModel)]="surname"
+        [ngModelOptions]="{standalone: true}"
+      />
+    </div>
 
-  <button type="submit" class="btn btn-primary" (click)="onSubmit()">
-    Add new user
-  </button>
-</form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control bg-secondary text-light border-0"
+        id="exampleInputEmail1"
+        placeholder="Enter your email"
+        [(ngModel)]="email"
+        [ngModelOptions]="{standalone: true}"
+      />
+    </div>
+
+    <div class="mb-4">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control bg-secondary text-light border-0"
+        id="exampleInputPassword1"
+        placeholder="Password"
+        [(ngModel)]="password"
+        [ngModelOptions]="{standalone: true}"
+      />
+    </div>
+
+    <div class="d-grid">
+      <button type="submit" class="btn btn-info fw-semibold">
+        ADD NEW USER
+      </button>
+    </div>
+  </form>
+</div>
