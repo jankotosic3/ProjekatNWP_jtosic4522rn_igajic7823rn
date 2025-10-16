@@ -10,6 +10,8 @@
         class="collapse navbar-collapse justify-content-between"
         id="navbarNavAltMarkup"
       >
+      
+        @if(userLoggedIn?.readUserPermission) {
         <div class="navbar-nav">
           <a
             [routerLink]="'/user-table'"
@@ -19,6 +21,12 @@
             Table
           </a>
         </div>
+        }
+        <!-- OVAJ ELSE SLUZI DA BI LOGIN DUGME BILO SKROZ DESNO DOK USER NIJE ULOGOVAN, JAKO GLUPO ISK ALI TAKO RADI CSS -->
+        @else{
+        <div></div>
+        }
+
         <div class="d-flex">
           <div class="navbar-nav">
             <a
