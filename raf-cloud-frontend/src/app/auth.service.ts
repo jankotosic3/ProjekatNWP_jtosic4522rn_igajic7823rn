@@ -84,7 +84,7 @@ export class AuthService {
     readUserPermission: boolean,
     updateUserPermission: boolean,
     deleteUserPermission: boolean,
-  
+
     createdMachines: Machine[],
     searchMachinePermission: boolean,
     turnOnMachinePermission: boolean,
@@ -99,7 +99,7 @@ export class AuthService {
         user.surname = surname;
         user.email = email;
         user.password = password;
-        
+
         user.newUserPermission = newUserPermission;
         user.readUserPermission = readUserPermission;
         user.updateUserPermission = updateUserPermission;
@@ -115,5 +115,17 @@ export class AuthService {
         break;
       }
     }
+  }
+
+  getUserNameById(userId: string): string {
+    let username = '';
+
+    for (let user of this.users) {
+      if (user.id === userId) {
+        username = user.name;
+        break;
+      }
+    }
+    return username;
   }
 }

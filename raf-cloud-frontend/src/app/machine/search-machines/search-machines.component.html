@@ -1,1 +1,36 @@
-<p>search-machines works!</p>
+<div class="container bg-dark text-light p-4 rounded-4 shadow-lg mt-4">
+  <h4 class="mb-3 border-bottom border-secondary pb-2">Machine Table</h4>
+
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Machine name</th>
+        <th scope="col">Creator</th>
+        <th scope="col">Status</th>
+        <th scope="col">Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (machine of machines; track machine.id) {
+      <tr>
+        <th scope="row">{{ machine.id }}</th>
+        <td>{{ machine.machineName }}</td>
+        <td>{{ getUserNameForMachine(machine.creatorId) }}</td>
+        <td>{{ MachineStatus[machine.status] }}</td>
+        <td>{{ machine.active }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="text-end">
+    <button
+      type="button"
+      class="btn btn-info fw-semibold px-4"
+      (click)="onNewMachine()"
+    >
+      + Add new machine
+    </button>
+  </div>
+</div>

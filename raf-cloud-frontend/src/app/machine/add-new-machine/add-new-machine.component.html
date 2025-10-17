@@ -1,1 +1,23 @@
-<p>add-new-machine works!</p>
+<div class="container bg-dark text-light p-5 rounded-4 shadow-lg mt-5" style="max-width: 500px;">
+  <h3 class="mb-4 text-center">Add New User</h3>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="exampleInputMachineName" class="form-label">Name for your machine</label>
+      <input
+        type="text"
+        class="form-control bg-secondary text-light border-0"
+        id="exampleInputMachineName"
+        placeholder="Enter name for your machine"
+        [(ngModel)]="machineName"
+        [ngModelOptions]="{standalone: true}"
+      />
+    </div>
+
+    <div class="d-grid">
+      <button type="submit" class="btn btn-info fw-semibold">
+        ADD NEW MACHINE
+      </button>
+    </div>
+  </form>
+</div>
