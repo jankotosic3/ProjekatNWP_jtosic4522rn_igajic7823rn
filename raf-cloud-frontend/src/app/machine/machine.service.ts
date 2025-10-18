@@ -37,7 +37,21 @@ export class MachineService {
         this.router.navigate(['/machines']);
     }
     deleteMachine(machineId: number){
+        for(let machine of this.machines){
+            if(machine.id === machineId){
+                if(machine.active){
+                    return;
+                }
+            }
+        }
         this.machines.filter(machine => machine.id !== machineId);
+    }
+
+    getMachinesForLoggedInUser(): Machine[] {
+        if(this.authService.userLoggedIn?.userType === 'admin'){
+            return this.machines;
+        }
+        return this.machines.filter(machine => machine.creatorId === this.authService.userLoggedIn?.id);
     }
 
     returnMachinesForLoggedInUser(): Machine[] {
@@ -46,5 +60,9 @@ export class MachineService {
     
     getUserNameForMachine(userId: string): string {
         return this.authService.getUserNameById(userId);
+    }
+
+    loggedInUser(){
+        return this.authService.userLoggedIn;
     }
 }

@@ -17,7 +17,11 @@ export class SearchMachinesComponent {
   MachineStatus = MachineStatus;
 
   get machines() {
-    return this.machineService.machines;
+    return this.machineService.getMachinesForLoggedInUser();
+  }
+
+  get loggedInUser(){
+    return this.machineService.loggedInUser();
   }
 
   getUserNameForMachine(userId: string): string {

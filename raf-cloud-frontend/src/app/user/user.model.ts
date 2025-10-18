@@ -20,4 +20,11 @@ export interface User {
   restartMachinePermission: boolean;
   createMachinePermission: boolean;
   deleteMachinePermission: boolean;
+
+  userType: UserType;
+}
+
+export enum UserType {
+  ADMIN = 'admin',
+  REGULAR = 'regular'
 }

@@ -1,3 +1,5 @@
+import { UserType } from "./user/user.model";
+
 export const DUMMY_USERS = [
   {
     id: '0',
@@ -16,6 +18,7 @@ export const DUMMY_USERS = [
     restartMachinePermission: true,
     createMachinePermission: true,
     deleteMachinePermission: true,
+    userType: UserType.ADMIN,
   },
   {
     id: '1',
@@ -34,6 +37,7 @@ export const DUMMY_USERS = [
     restartMachinePermission: false,
     createMachinePermission: false,
     deleteMachinePermission: false,
+    userType: UserType.REGULAR,
   },
   {
     id: '2',
@@ -52,6 +56,7 @@ export const DUMMY_USERS = [
     restartMachinePermission: false,
     createMachinePermission: false,
     deleteMachinePermission: false,
+    userType: UserType.REGULAR,
   },
   {
     id: '3',
@@ -70,6 +75,7 @@ export const DUMMY_USERS = [
     restartMachinePermission: false,
     createMachinePermission: false,
     deleteMachinePermission: false,
+    userType: UserType.REGULAR,
   },
   {
     id: '4',
@@ -88,6 +94,7 @@ export const DUMMY_USERS = [
     restartMachinePermission: true,
     createMachinePermission: false,
     deleteMachinePermission: false,
+    userType: UserType.REGULAR,
   },
   {
     id: '5',
@@ -106,6 +113,7 @@ export const DUMMY_USERS = [
     restartMachinePermission: false,
     createMachinePermission: false,
     deleteMachinePermission: false,
+    userType: UserType.REGULAR,
   },
   {
     id: '6',
@@ -124,6 +132,7 @@ export const DUMMY_USERS = [
     restartMachinePermission: false,
     createMachinePermission: false,
     deleteMachinePermission: false,
+    userType: UserType.REGULAR,
   },
   {
     id: '7',
@@ -142,6 +151,7 @@ export const DUMMY_USERS = [
     restartMachinePermission: false,
     createMachinePermission: false,
     deleteMachinePermission: false,
+    userType: UserType.REGULAR,
   },
   {
     id: '8',
@@ -160,6 +170,7 @@ export const DUMMY_USERS = [
     restartMachinePermission: true,
     createMachinePermission: false,
     deleteMachinePermission: false,
+    userType: UserType.REGULAR,
   },
   {
     id: '9',
@@ -178,6 +189,7 @@ export const DUMMY_USERS = [
     restartMachinePermission: false,
     createMachinePermission: false,
     deleteMachinePermission: false,
+    userType: UserType.REGULAR,
   },
   {
     id: '10',
@@ -196,5 +208,6 @@ export const DUMMY_USERS = [
     restartMachinePermission: false,
     createMachinePermission: false,
     deleteMachinePermission: false,
+    userType: UserType.REGULAR,
   },
 ];

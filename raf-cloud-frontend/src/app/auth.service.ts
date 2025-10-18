@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { type User } from './user/user.model';
+import { UserType, type User } from './user/user.model';
 import { DUMMY_USERS } from './dummy-users';
 import { Router } from '@angular/router';
 import { type Machine } from './machine/machine.model';
@@ -54,10 +54,12 @@ export class AuthService {
       surname: surname,
       email: email,
       password: password,
+
       newUserPermission: newUserPermission,
       readUserPermission: readUserPermission,
       updateUserPermission: updateUserPermission,
       deleteUserPermission: deleteUserPermission,
+
       createdMachines: createdMachines,
       searchMachinePermission: searchMachinePermission,
       turnOnMachinePermission: turnOnMachinePermission,
@@ -65,6 +67,8 @@ export class AuthService {
       restartMachinePermission: restartMachinePermission,
       createMachinePermission: createMachinePermission,
       deleteMachinePermission: deleteMachinePermission,
+
+      userType: UserType.REGULAR,
     });
     this.router.navigate(['/user-table']);
   }
