@@ -31,8 +31,16 @@
         <td>{{ user.updateUserPermission }}</td>
         <td>{{ user.readUserPermission }}</td>
         @if(userLoggedIn?.deleteUserPermission) {
-          <button type="button" class="btn btn-danger fw-semibold px-4" (click)="openDeleteUserDialog(user); $event.stopPropagation()">Delete</button>
-          <!-- $event.stopPropagation() sprecava da se pozove onRowClick(), tj da se odradi funkcija parent komponente -->
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger fw-semibold px-4"
+            (click)="openDeleteUserDialog(user); $event.stopPropagation()"
+          >
+            Delete
+          </button>
+        </td>
+        <!-- $event.stopPropagation() sprecava da se pozove onRowClick(), tj da se odradi funkcija parent komponente -->
         }
       </tr>
       }
@@ -48,14 +56,16 @@
       + Add new user
     </button>
   </div>
-  } 
-    
-  @if(selectedUser && userLoggedIn?.updateUserPermission) {
-  <app-edit-user-data [selectedUser]="selectedUser" (closeDialog)="closeUpdateUserDialog()"/>
+  } @if(selectedUser && userLoggedIn?.updateUserPermission) {
+  <app-edit-user-data
+    [selectedUser]="selectedUser"
+    (closeDialog)="closeUpdateUserDialog()"
+  />
+  } @if(showDeleteUserDialog && userToDelete &&
+  userLoggedIn?.deleteUserPermission) {
+  <app-delete-user
+    [user]="userToDelete"
+    (closeDialog)="closeDeleteUserDialog()"
+  />
   }
-
-  @if(showDeleteUserDialog && userToDelete && userLoggedIn?.deleteUserPermission) {
-    <app-delete-user [user]="userToDelete" (closeDialog)="closeDeleteUserDialog()"/>
-  }
-
 </div>

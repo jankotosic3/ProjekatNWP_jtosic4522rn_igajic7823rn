@@ -39,4 +39,16 @@ export class SearchMachinesComponent {
   onSearch() {
     this.machines = this.machineService.search(this.searchName, this.searchStatus);
   }
+
+  onTurnOnMachine(machine: Machine){
+    this.machineService.turnOn(machine.id);
+  }
+
+  onTurnOffMachine(machine: Machine){
+    this.machineService.turnOff(machine.id); 
+  }
+
+  onRestartMachine(machine: Machine){
+    this.machineService.restart(machine.id);
+  }
 }

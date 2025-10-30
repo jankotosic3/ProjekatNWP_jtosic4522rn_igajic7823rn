@@ -21,7 +21,9 @@
             class="form-control bg-secondary text-light border-secondary"
             placeholder="Machine name"
           />
-          <button class="btn btn-info fw-semibold px-4" type="submit">Search</button>
+          <button class="btn btn-info fw-semibold px-4" type="submit">
+            Search
+          </button>
         </div>
       </form>
     </div>
@@ -39,6 +41,13 @@
         <th scope="col">Creator</th>
         <th scope="col">Status</th>
         <th scope="col">Active</th>
+        @if(loggedInUser?.turnOnMachinePermission){
+        <th scope="col">Turn on</th>
+        } @if(loggedInUser?.turnOffMachinePermission){
+        <th scope="col">Turn off</th>
+        } @if(loggedInUser?.restartMachinePermission){
+        <th scope="col">Restart</th>
+        }
       </tr>
     </thead>
     <tbody>
@@ -49,6 +58,26 @@
         <td>{{ getUserNameForMachine(machine.creatorId) }}</td>
         <td>{{ MachineStatus[machine.status] }}</td>
         <td>{{ machine.active }}</td>
+
+        @if(loggedInUser?.turnOnMachinePermission){
+        <td>
+          <button type="button" class="btn btn-danger fw-semibold px-4" (click)="onTurnOnMachine(machine)">
+            Turn on
+          </button>
+        </td>
+        } @if(loggedInUser?.turnOffMachinePermission){
+        <td>
+          <button type="button" class="btn btn-danger fw-semibold px-4" (click)="onTurnOffMachine(machine)">
+            Turn off
+          </button>
+        </td>
+        } @if(loggedInUser?.restartMachinePermission){
+        <td>
+          <button type="button" class="btn btn-danger fw-semibold px-4" (click)="onRestartMachine(machine)">
+            Restart
+          </button>
+        </td>
+        }
       </tr>
       }
     </tbody>

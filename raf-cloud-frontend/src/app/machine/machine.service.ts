@@ -26,16 +26,59 @@ export class MachineService {
     });
   }
 
-  turnOn() {
-    //TO DO
+  turnOn(id: number) {
+    const machine = this.getMachineById(id);
+    if (!machine) return;
+
+    if (machine.active) {
+      console.log('Masina ' + machine.machineName + ' nije ugasena!');
+      return;
+    }
+
+    setTimeout(() => {
+      machine.active = true;
+      machine.status = MachineStatus.InUse;
+      console.log('Masina ' + machine.machineName + ' je upaljena.');
+    }, 10000);
+
   }
-  turnOff() {
-    //TO DO
+
+  turnOff(id: number) {
+    const machine = this.getMachineById(id);
+    if (!machine) return;
+
+    if (!machine.active) {
+      console.log('Masina ' + machine.machineName + ' nije upaljena!');
+      return;
+    }
+
+    setTimeout(() => {
+      machine.active = false;
+      machine.status = MachineStatus.Free;
+      console.log('Masina ' + machine.machineName + ' je ugasena!');
+    }, 10000);
+
   }
-  restart() {
-    //valjda ovako (nisam citao al pretpostavljam)
-    this.turnOff();
-    this.turnOn();
+
+  restart(id: number) {
+    const machine = this.getMachineById(id);
+    if (!machine) return;
+
+    if (!machine.active) {
+      console.log('Masina ' + machine.machineName + ' nije upaljena i ne moze biti restartovana!');
+        return;
+    }
+
+    setTimeout(() => {
+      machine.active = false;
+      machine.status = MachineStatus.Free;
+    }, 5000); 
+
+    setTimeout(() => {
+      machine.active = true;
+      machine.status = MachineStatus.InUse;
+      console.log('Masina ' + machine.machineName + ' je uspesno restartovana!');
+    }, 5000);
   }
 
   createMachine(machineName: string) {
@@ -81,5 +124,12 @@ export class MachineService {
 
   loggedInUser() {
     return this.authService.userLoggedIn;
+  }
+
+  getMachineById(id: number): Machine | null {
+    for (let machine of this.machines) {
+      if (machine.id === id) return machine;
+    }
+    return null;
   }
 }
