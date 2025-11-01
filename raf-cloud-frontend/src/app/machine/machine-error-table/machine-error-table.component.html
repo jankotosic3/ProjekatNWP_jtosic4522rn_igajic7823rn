@@ -1,33 +1,33 @@
 <!-- error-history.component.html -->
 <div class="container mt-4">
-
   @if(getNumberOfUsersMachinePermissions() === 0) {
-    <div class="alert alert-warning text-center">
-      You don't have any permissions assigned. Please contact your administrator.
-    </div>
-  }
-  @else{
-    <h4 class="mb-3 border-bottom border-secondary pb-2 text-light">Error History</h4>
+  <div class="alert alert-warning text-center">
+    You don't have any permissions assigned. Please contact your administrator.
+  </div>
+  } @else{
+  <h4 class="mb-3 border-bottom border-secondary pb-2 text-light">
+    Error History
+  </h4>
 
-    <table class="table table-dark table-striped">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Machine</th>
-          <th scope="col">Error Message</th>
-          <th scope="col">Timestamp</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- @for(let error of errors; track error.id) {
-          <tr>
-            <th scope="row">{{ error.id }}</th>
-            <td>{{ getMachineName(error.machineId) }}</td>
-            <td>{{ error.message }}</td>
-            <td>{{ error.timestamp | date:'short' }}</td>
-          </tr>
-        } -->
-      </tbody>
-    </table>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Machine</th>
+        <th scope="col">Error Message</th>
+        <th scope="col">Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(error of getMachineErrorsForUser(); track error.errorId) {
+      <tr>
+        <th scope="row">{{ error.errorId }}</th>
+        <td>{{ getMachineNameFromID(error.machineId) }}</td>
+        <td>{{ error.errorMessage }}</td>
+        <td>{{ error.date | date : "long" }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
   }
 </div>

@@ -40,7 +40,6 @@ export class AuthService {
     readUserPermission: boolean,
     updateUserPermission: boolean,
     deleteUserPermission: boolean,
-    createdMachines: Machine[],
     searchMachinePermission: boolean,
     turnOnMachinePermission: boolean,
     turnOffMachinePermission: boolean,
@@ -60,7 +59,6 @@ export class AuthService {
       updateUserPermission: updateUserPermission,
       deleteUserPermission: deleteUserPermission,
 
-      createdMachines: createdMachines,
       searchMachinePermission: searchMachinePermission,
       turnOnMachinePermission: turnOnMachinePermission,
       turnOffMachinePermission: turnOffMachinePermission,
@@ -89,7 +87,6 @@ export class AuthService {
     updateUserPermission: boolean,
     deleteUserPermission: boolean,
 
-    createdMachines: Machine[],
     searchMachinePermission: boolean,
     turnOnMachinePermission: boolean,
     turnOffMachinePermission: boolean,
@@ -109,7 +106,6 @@ export class AuthService {
         user.updateUserPermission = updateUserPermission;
         user.deleteUserPermission = deleteUserPermission;
 
-        user.createdMachines = createdMachines;
         user.searchMachinePermission = searchMachinePermission;
         user.turnOnMachinePermission = turnOnMachinePermission;
         user.turnOffMachinePermission = turnOffMachinePermission;

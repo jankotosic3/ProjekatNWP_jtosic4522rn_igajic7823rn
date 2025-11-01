@@ -12,8 +12,6 @@ export interface User {
   updateUserPermission: boolean;
   deleteUserPermission: boolean;
 
-  createdMachines: Machine[];
-
   searchMachinePermission: boolean;
   turnOnMachinePermission: boolean;
   turnOffMachinePermission: boolean;

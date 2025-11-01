@@ -1,12 +1,15 @@
 export interface Machine {
-    id: number;
-    machineName: string;
-    status: MachineStatus;
-    creatorId: string;
-    active: boolean;
+  id: number;
+  machineName: string;
+  status: MachineStatus;
+  creatorId: string;
+  active: boolean;
 }
 
 export enum MachineStatus {
-    Free,
-    InUse
+  FREE,
+  IN_USE,
+  STARTING,
+  STOPPING,
+  RESTARTING,
 }

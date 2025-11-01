@@ -24,7 +24,6 @@ export class EditUserDataComponent {
   updateUserPermission!: boolean;
   deleteUserPermission!: boolean;
 
-  createdMachines: Machine[] = [];
   searchMachinePermission: boolean = false;
   turnOnMachinePermission: boolean = false;
   turnOffMachinePermission: boolean = false;
@@ -46,7 +45,6 @@ export class EditUserDataComponent {
       this.updateUserPermission = this.selectedUser.updateUserPermission;
       this.deleteUserPermission = this.selectedUser.deleteUserPermission;
 
-      this.createdMachines = this.selectedUser.createdMachines;
       this.searchMachinePermission = this.selectedUser.searchMachinePermission;
       this.turnOnMachinePermission = this.selectedUser.turnOnMachinePermission;
       this.turnOffMachinePermission = this.selectedUser.turnOffMachinePermission;
@@ -67,7 +65,6 @@ export class EditUserDataComponent {
       this.readUserPermission,
       this.updateUserPermission,
       this.deleteUserPermission,
-      this.createdMachines,
       this.searchMachinePermission,
       this.turnOnMachinePermission,
       this.turnOffMachinePermission,

@@ -21,7 +21,6 @@ export class AddNewUserComponent {
   readUserPermission: boolean = false;
   updateUserPermission: boolean = false;
   deleteUserPermission: boolean = false;
-  createdMachines: Machine[] = [];
   searchMachinePermission: boolean = false;
   turnOnMachinePermission: boolean = false;
   turnOffMachinePermission: boolean = false;
@@ -39,7 +38,6 @@ export class AddNewUserComponent {
       this.readUserPermission,
       this.updateUserPermission,
       this.deleteUserPermission,
-      this.createdMachines,
       this.searchMachinePermission,
       this.turnOnMachinePermission,
       this.turnOffMachinePermission,

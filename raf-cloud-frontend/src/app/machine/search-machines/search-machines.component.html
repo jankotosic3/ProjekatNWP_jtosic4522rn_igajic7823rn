@@ -11,8 +11,8 @@
             [ngModelOptions]="{ standalone: true }"
           >
             <option [ngValue]="null">Both</option>
-            <option [ngValue]="MachineStatus.Free">Free</option>
-            <option [ngValue]="MachineStatus.InUse">In use</option>
+            <option [ngValue]="MachineStatus.FREE">Free</option>
+            <option [ngValue]="MachineStatus.IN_USE">In use</option>
           </select>
           <input
             [(ngModel)]="searchName"
@@ -47,10 +47,11 @@
         <th scope="col">Turn off</th>
         } @if(loggedInUser?.restartMachinePermission){
         <th scope="col">Restart</th>
+        } @if(loggedInUser?.turnOnMachinePermission ||
+        loggedInUser?.turnOffMachinePermission ||
+        loggedInUser?.restartMachinePermission ){
+        <th scope="col">Schedule</th>
         }
-         @if(loggedInUser?.turnOnMachinePermission || loggedInUser?.turnOffMachinePermission || loggedInUser?.restartMachinePermission ){
-          <th scope="col">Schedule</th>
-         }
       </tr>
     </thead>
     <tbody>
@@ -64,27 +65,43 @@
 
         @if(loggedInUser?.turnOnMachinePermission){
         <td>
-          <button type="button" class="btn btn-danger fw-semibold px-4" (click)="onTurnOnMachine(machine)">
+          <button
+            type="button"
+            class="btn btn-danger fw-semibold px-4"
+            (click)="onTurnOnMachine(machine)"
+          >
             Turn on
           </button>
         </td>
         } @if(loggedInUser?.turnOffMachinePermission){
         <td>
-          <button type="button" class="btn btn-danger fw-semibold px-4" (click)="onTurnOffMachine(machine)">
+          <button
+            type="button"
+            class="btn btn-danger fw-semibold px-4"
+            (click)="onTurnOffMachine(machine)"
+          >
             Turn off
           </button>
         </td>
         } @if(loggedInUser?.restartMachinePermission){
         <td>
-          <button type="button" class="btn btn-danger fw-semibold px-4" (click)="onRestartMachine(machine)">
+          <button
+            type="button"
+            class="btn btn-danger fw-semibold px-4"
+            (click)="onRestartMachine(machine)"
+          >
             Restart
           </button>
         </td>
-        }
-
-        @if(loggedInUser?.turnOnMachinePermission || loggedInUser?.turnOffMachinePermission || loggedInUser?.restartMachinePermission ){
+        } @if(loggedInUser?.turnOnMachinePermission ||
+        loggedInUser?.turnOffMachinePermission ||
+        loggedInUser?.restartMachinePermission ){
         <td>
-          <button type="button" class="btn btn-info fw-semibold px-4" (click)="onShowScheduleDialog(machine)">
+          <button
+            type="button"
+            class="btn btn-info fw-semibold px-4"
+            (click)="onShowScheduleDialog(machine)"
+          >
             Schedule operation
           </button>
         </td>
@@ -108,5 +125,8 @@
 </div>
 
 @if(showScheduleDialog && schedulingOperationMachine){
-  <app-schedule-machine-operation [machine]="schedulingOperationMachine" (closeDialog)="onCloseScheduleDialog()"/>
+<app-schedule-machine-operation
+  [machine]="schedulingOperationMachine"
+  (closeDialog)="onCloseScheduleDialog()"
+/>
 }

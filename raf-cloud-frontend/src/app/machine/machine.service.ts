@@ -3,7 +3,8 @@ import { DUMMY_MACHINES } from '../dummy-machines';
 import { MachineStatus, type Machine } from './machine.model';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
-import { Operation } from './error.model';
+import { Operation, type Error } from './error.model';
+import { UserType } from '../user/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -39,10 +40,11 @@ export class MachineService {
 
       return;
     }
+    machine.status = MachineStatus.STARTING;
 
     setTimeout(() => {
       machine.active = true;
-      machine.status = MachineStatus.InUse;
+      machine.status = MachineStatus.IN_USE;
       console.log('Masina ' + machine.machineName + ' je upaljena.');
     }, 10000);
   }
@@ -55,10 +57,11 @@ export class MachineService {
       console.log('Masina ' + machine.machineName + ' nije upaljena!');
       return;
     }
+    machine.status = MachineStatus.STOPPING;
 
     setTimeout(() => {
       machine.active = false;
-      machine.status = MachineStatus.Free;
+      machine.status = MachineStatus.FREE;
       console.log('Masina ' + machine.machineName + ' je ugasena!');
     }, 10000);
   }
@@ -76,14 +79,15 @@ export class MachineService {
       return;
     }
 
+    machine.status = MachineStatus.RESTARTING;
+
     setTimeout(() => {
       machine.active = false;
-      machine.status = MachineStatus.Free;
     }, 5000);
 
     setTimeout(() => {
       machine.active = true;
-      machine.status = MachineStatus.InUse;
+      machine.status = MachineStatus.IN_USE;
       console.log(
         'Masina ' + machine.machineName + ' je uspesno restartovana!'
       );
@@ -110,6 +114,13 @@ export class MachineService {
       }
     }
     this.machines.filter((machine) => machine.id !== machineId);
+  }
+
+  getMachineNameFromID(machineId: number): string {
+    for (let machine of this.machines) {
+      if (machine.id === machineId) return machine.machineName;
+    }
+    return '';
   }
 
   getMachinesForLoggedInUser(): Machine[] {
@@ -163,7 +174,10 @@ export class MachineService {
 
     setTimeout(() => {
       console.log(
-        `Executing scheduled operation: ${Operation[operation]} on ${machine.machineName}`
+        'Executing scheduled operation: ' +
+          Operation[operation] +
+          ' on ' +
+          machine.machineName
       );
 
       switch (operation) {
@@ -180,9 +194,22 @@ export class MachineService {
     }, delay);
 
     console.log(
-      `Operation scheduled for ${
-        machine.machineName
-      } at ${scheduledFor.toLocaleString()}`
+      'Operation scheduled for ' +
+        machine.machineName +
+        ' at ' +
+        scheduledFor.toLocaleString()
+    );
+  }
+
+  getErrorsForLoggedInUser(): Error[] {
+    if (!this.loggedInUser) return [];
+
+    if (this.loggedInUser()?.userType === UserType.ADMIN) {
+      return this.errors;
+    }
+
+    return this.errors.filter(
+      (error) => error.userId === this.loggedInUser()?.id
     );
   }
 }
