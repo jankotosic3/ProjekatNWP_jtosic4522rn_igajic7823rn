@@ -48,6 +48,9 @@
         } @if(loggedInUser?.restartMachinePermission){
         <th scope="col">Restart</th>
         }
+         @if(loggedInUser?.turnOnMachinePermission || loggedInUser?.turnOffMachinePermission || loggedInUser?.restartMachinePermission ){
+          <th scope="col">Schedule</th>
+         }
       </tr>
     </thead>
     <tbody>
@@ -78,6 +81,14 @@
           </button>
         </td>
         }
+
+        @if(loggedInUser?.turnOnMachinePermission || loggedInUser?.turnOffMachinePermission || loggedInUser?.restartMachinePermission ){
+        <td>
+          <button type="button" class="btn btn-info fw-semibold px-4" (click)="onShowScheduleDialog(machine)">
+            Schedule operation
+          </button>
+        </td>
+        }
       </tr>
       }
     </tbody>
@@ -95,3 +106,7 @@
   </div>
   }
 </div>
+
+@if(showScheduleDialog && schedulingOperationMachine){
+  <app-schedule-machine-operation [machine]="schedulingOperationMachine" (closeDialog)="onCloseScheduleDialog()"/>
+}

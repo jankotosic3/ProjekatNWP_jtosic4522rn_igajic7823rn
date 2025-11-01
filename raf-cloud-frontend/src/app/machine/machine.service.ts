@@ -3,12 +3,16 @@ import { DUMMY_MACHINES } from '../dummy-machines';
 import { MachineStatus, type Machine } from './machine.model';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { Operation } from './error.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MachineService {
   machines: Machine[] = DUMMY_MACHINES;
+
+  errors: Error[] = [];
+
   constructor(private router: Router, private authService: AuthService) {}
 
   search(name?: string, status?: MachineStatus | null): Machine[] {
@@ -32,6 +36,7 @@ export class MachineService {
 
     if (machine.active) {
       console.log('Masina ' + machine.machineName + ' nije ugasena!');
+
       return;
     }
 
@@ -40,7 +45,6 @@ export class MachineService {
       machine.status = MachineStatus.InUse;
       console.log('Masina ' + machine.machineName + ' je upaljena.');
     }, 10000);
-
   }
 
   turnOff(id: number) {
@@ -57,7 +61,6 @@ export class MachineService {
       machine.status = MachineStatus.Free;
       console.log('Masina ' + machine.machineName + ' je ugasena!');
     }, 10000);
-
   }
 
   restart(id: number) {
@@ -65,19 +68,25 @@ export class MachineService {
     if (!machine) return;
 
     if (!machine.active) {
-      console.log('Masina ' + machine.machineName + ' nije upaljena i ne moze biti restartovana!');
-        return;
+      console.log(
+        'Masina ' +
+          machine.machineName +
+          ' nije upaljena i ne moze biti restartovana!'
+      );
+      return;
     }
 
     setTimeout(() => {
       machine.active = false;
       machine.status = MachineStatus.Free;
-    }, 5000); 
+    }, 5000);
 
     setTimeout(() => {
       machine.active = true;
       machine.status = MachineStatus.InUse;
-      console.log('Masina ' + machine.machineName + ' je uspesno restartovana!');
+      console.log(
+        'Masina ' + machine.machineName + ' je uspesno restartovana!'
+      );
     }, 5000);
   }
 
@@ -131,5 +140,49 @@ export class MachineService {
       if (machine.id === id) return machine;
     }
     return null;
+  }
+
+  scheduleOperation(
+    machineId: number,
+    operation: Operation,
+    scheduledFor: Date
+  ) {
+    const machine = this.getMachineById(machineId);
+    if (!machine) {
+      console.log('Machine not found');
+      return;
+    }
+
+    const now = new Date();
+    const delay = scheduledFor.getTime() - now.getTime();
+
+    if (delay < 0) {
+      console.log('Cannot schedule operation in the past');
+      return;
+    }
+
+    setTimeout(() => {
+      console.log(
+        `Executing scheduled operation: ${Operation[operation]} on ${machine.machineName}`
+      );
+
+      switch (operation) {
+        case Operation.TURN_ON:
+          this.turnOn(machineId);
+          break;
+        case Operation.TURN_OFF:
+          this.turnOff(machineId);
+          break;
+        case Operation.RESTART:
+          this.restart(machineId);
+          break;
+      }
+    }, delay);
+
+    console.log(
+      `Operation scheduled for ${
+        machine.machineName
+      } at ${scheduledFor.toLocaleString()}`
+    );
   }
 }

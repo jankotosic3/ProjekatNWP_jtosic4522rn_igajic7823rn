@@ -5,6 +5,7 @@ import { AddNewUserComponent } from './user/add-new-user/add-new-user.component'
 import { HomeComponent } from './home/home.component';
 import { SearchMachinesComponent } from './machine/search-machines/search-machines.component';
 import { AddNewMachineComponent } from './machine/add-new-machine/add-new-machine.component';
+import { MachineErrorTableComponent } from './machine/machine-error-table/machine-error-table.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -13,4 +14,5 @@ export const routes: Routes = [
   { path: 'new-user', component: AddNewUserComponent},
   { path: 'machines', component: SearchMachinesComponent},
   { path: 'new-machine', component: AddNewMachineComponent },
+  { path: 'errors', component: MachineErrorTableComponent}
 ];

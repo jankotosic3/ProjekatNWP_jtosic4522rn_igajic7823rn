@@ -28,4 +28,9 @@ export class MachineErrorTableComponent {
   get loggedInUser() {
     return this.machineSerivce.loggedInUser();
   }
+
+  getMachineErrorsForUser(){
+    
+  }
+
 }

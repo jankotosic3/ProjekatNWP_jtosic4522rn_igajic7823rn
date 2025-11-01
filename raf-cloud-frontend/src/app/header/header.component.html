@@ -27,6 +27,16 @@
             Machines
           </a>
         </div>
+        } @if(userLoggedIn){
+        <div class="navbar-nav">
+          <a
+            [routerLink]="'/errors'"
+            class="nav-link fw-bold text-light"
+            aria-current="page"
+          >
+            Errors
+          </a>
+        </div>
         } @if(!userLoggedIn) {
         <div class="d-flex">
           <div class="navbar-nav">

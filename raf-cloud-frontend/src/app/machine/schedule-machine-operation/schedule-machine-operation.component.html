@@ -1,0 +1,113 @@
+<div class="overlay" (click)="close()"></div>
+
+<div
+  class="modal d-block"
+  tabindex="-1"
+  role="dialog"
+  style="
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050;
+    max-width: 500px;
+    width: 90%;
+  "
+>
+  <div class="modal-content bg-dark text-light rounded-4 shadow-lg px-4 pb-4">
+    <div class="modal-header border-bottom border-secondary">
+      <h5 class="modal-title">
+        Schedule operation on {{ machine.machineName }}
+      </h5>
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        aria-label="Close"
+        (click)="close()"
+      ></button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="d-flex gap-2 mt-3 mb-3">
+        <input
+          type="radio"
+          class="btn-check"
+          name="operation"
+          id="start"
+          [value]="Operation.TURN_ON"
+          [(ngModel)]="selectedOperation"
+        />
+        <label
+          class="btn btn-info fw-semibold flex-grow-1 text-center"
+          for="start"
+          >Start</label
+        >
+
+        <input
+          type="radio"
+          class="btn-check"
+          name="operation"
+          id="stop"
+          [value]="Operation.TURN_OFF"
+          [(ngModel)]="selectedOperation"
+        />
+        <label
+          class="btn btn-info fw-semibold flex-grow-1 text-center"
+          for="stop"
+          >Stop</label
+        >
+
+        <input
+          type="radio"
+          class="btn-check"
+          name="operation"
+          id="restart"
+          [value]="Operation.RESTART"
+          [(ngModel)]="selectedOperation"
+        />
+        <label
+          class="btn btn-info fw-semibold flex-grow-1 text-center"
+          for="restart"
+          >Restart</label
+        >
+      </div>
+
+      <div class="mb-3">
+        <label for="scheduleDate" class="form-label">Date</label>
+        <input
+          type="date"
+          class="form-control bg-dark text-light border-secondary"
+          id="scheduleDate"
+          name="scheduleDate"
+          [(ngModel)]="scheduleDate"
+          [min]="minDate"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="scheduleTime" class="form-label">Time</label>
+        <input
+          type="time"
+          class="form-control bg-dark text-light border-secondary"
+          id="scheduleTime"
+          name="scheduleTime"
+          [(ngModel)]="scheduleTime"
+          required
+        />
+      </div>
+
+      <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-info fw-semibold">
+          Schedule operation
+        </button>
+        <button
+          type="button"
+          class="btn btn-secondary fw-semibold"
+          (click)="close()"
+        >
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
