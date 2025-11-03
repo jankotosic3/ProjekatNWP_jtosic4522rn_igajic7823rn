@@ -31,17 +31,20 @@ export class MachineService {
     });
   }
 
-  turnOn(id: number) {
-    const machine = this.getMachineById(id);
+  turnOn(machineId: number) {
+    const machine = this.getMachineById(machineId);
     if (!machine) return;
 
     if (machine.active) {
-      console.log('Masina ' + machine.machineName + ' nije ugasena!');
-
+      this.createError(
+        'Masina ' + machine.machineName + ' nije ugasena!',
+        machineId,
+        Operation.TURN_ON
+      );
       return;
     }
-    machine.status = MachineStatus.STARTING;
 
+    machine.status = MachineStatus.STARTING;
     setTimeout(() => {
       machine.active = true;
       machine.status = MachineStatus.IN_USE;
@@ -49,12 +52,16 @@ export class MachineService {
     }, 10000);
   }
 
-  turnOff(id: number) {
-    const machine = this.getMachineById(id);
+  turnOff(machineId: number) {
+    const machine = this.getMachineById(machineId);
     if (!machine) return;
 
     if (!machine.active) {
-      console.log('Masina ' + machine.machineName + ' nije upaljena!');
+      this.createError(
+        'Masina ' + machine.machineName + ' nije upaljena!',
+        machineId,
+        Operation.TURN_OFF
+      );
       return;
     }
     machine.status = MachineStatus.STOPPING;
@@ -66,15 +73,17 @@ export class MachineService {
     }, 10000);
   }
 
-  restart(id: number) {
-    const machine = this.getMachineById(id);
+  restart(machineId: number) {
+    const machine = this.getMachineById(machineId);
     if (!machine) return;
 
     if (!machine.active) {
-      console.log(
+      this.createError(
         'Masina ' +
           machine.machineName +
-          ' nije upaljena i ne moze biti restartovana!'
+          ' nije ugasena i ne moze biti restartovana!',
+        machineId,
+        Operation.RESTART
       );
       return;
     }
@@ -168,7 +177,7 @@ export class MachineService {
     const delay = scheduledFor.getTime() - now.getTime();
 
     if (delay < 0) {
-      console.log('Cannot schedule operation in the past');
+      this.createError('Cannot schedule operation in the past', machineId, operation)
       return;
     }
 
@@ -211,5 +220,18 @@ export class MachineService {
     return this.errors.filter(
       (error) => error.userId === this.loggedInUser()?.id
     );
+  }
+
+  createError(errorMessage: string, machineId: number, operation: Operation) {
+    let error: Error = {
+      errorId: this.errors.length,
+      errorMessage: errorMessage,
+      userId: this.loggedInUser()?.id + '',
+      machineId: machineId,
+      operation: operation,
+      date: new Date(),
+    };
+    this.errors.push(error);
+    console.log(errorMessage);
   }
 }
